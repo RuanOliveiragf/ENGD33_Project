@@ -1,0 +1,3 @@
+2025-09-08 21:48:39,574 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] Sep 08, 2025 9:48:39 PM org.apache.lucene.internal.vectorization.VectorizationProvider lookup
+2025-09-08 21:48:39,592 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] WARNING: Java vector incubator module is not readable. For optimal vector performance, pass '--add-modules jdk.incubator.vector' to enable Vector API.
+2025-09-08 21:48:39,593 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 

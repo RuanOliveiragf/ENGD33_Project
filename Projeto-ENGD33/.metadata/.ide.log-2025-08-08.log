@@ -1,0 +1,240 @@
+2025-08-08 06:44:44,693 [INFO] WebApp:194 - Connection lost
+2025-08-08 06:44:46,029 [INFO] WebApp:191 - Connection restablished
+2025-08-08 06:44:50,116 [INFO] WebApp:194 - Connection lost
+2025-08-08 06:44:50,290 [INFO] WebApp:191 - Connection restablished
+2025-08-08 06:44:58,983 [INFO] WebApp:194 - Connection lost
+2025-08-08 06:44:59,146 [INFO] WebApp:191 - Connection restablished
+2025-08-08 06:45:02,120 [INFO] WebApp:194 - Connection lost
+2025-08-08 06:45:02,291 [INFO] WebApp:191 - Connection restablished
+2025-08-08 06:45:09,772 [INFO] WebApp:194 - Connection lost
+2025-08-08 06:45:09,939 [INFO] WebApp:191 - Connection restablished
+2025-08-08 06:45:29,751 [INFO] WebApp:194 - Connection lost
+2025-08-08 06:45:29,966 [INFO] WebApp:191 - Connection restablished
+2025-08-08 06:45:32,989 [INFO] WebApp:194 - Connection lost
+2025-08-08 06:45:39,756 [INFO] WebApp:191 - Connection restablished
+2025-08-08 06:48:07,591 [INFO] WebApp:194 - Connection lost
+2025-08-08 06:48:11,970 [INFO] WebApp:191 - Connection restablished
+2025-08-08 06:48:13,509 [INFO] WebApp:194 - Connection lost
+2025-08-08 06:48:13,689 [INFO] WebApp:191 - Connection restablished
+2025-08-08 07:21:12,832 [INFO] WebApp:194 - Connection lost
+2025-08-08 07:21:13,109 [INFO] WebApp:191 - Connection restablished
+2025-08-08 07:21:16,012 [INFO] WebApp:194 - Connection lost
+2025-08-08 07:21:16,196 [INFO] WebApp:191 - Connection restablished
+2025-08-08 07:21:31,006 [INFO] WebApp:194 - Connection lost
+2025-08-08 07:21:31,174 [INFO] WebApp:191 - Connection restablished
+2025-08-08 07:21:38,662 [INFO] WebApp:194 - Connection lost
+2025-08-08 07:21:38,839 [INFO] WebApp:191 - Connection restablished
+2025-08-08 07:21:40,516 [INFO] WebApp:194 - Connection lost
+2025-08-08 07:21:47,314 [INFO] WebApp:191 - Connection restablished
+2025-08-08 07:21:58,740 [INFO] WebApp:194 - Connection lost
+2025-08-08 07:21:59,060 [INFO] WebApp:191 - Connection restablished
+2025-08-08 11:26:38,898 [INFO] WebApp:194 - Connection lost
+2025-08-08 11:26:46,123 [INFO] WebApp:191 - Connection restablished
+2025-08-08 11:26:52,251 [INFO] WebApp:194 - Connection lost
+2025-08-08 11:26:52,419 [INFO] WebApp:191 - Connection restablished
+2025-08-08 11:27:07,583 [INFO] WebApp:194 - Connection lost
+2025-08-08 11:27:07,748 [INFO] WebApp:191 - Connection restablished
+2025-08-08 11:27:10,979 [INFO] WebApp:194 - Connection lost
+2025-08-08 11:27:17,747 [INFO] WebApp:191 - Connection restablished
+2025-08-08 11:36:28,910 [INFO] WebApp:194 - Connection lost
+2025-08-08 11:36:55,300 [INFO] WebApp:191 - Connection restablished
+2025-08-08 11:36:57,498 [INFO] WebApp:194 - Connection lost
+2025-08-08 11:36:57,659 [INFO] WebApp:191 - Connection restablished
+2025-08-08 11:39:57,357 [INFO] WebApp:194 - Connection lost
+2025-08-08 11:39:57,606 [INFO] WebApp:191 - Connection restablished
+2025-08-08 13:47:36,815 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 332190800 Bytes (565182464)
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RTC
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USART
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FREERTOS
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USART
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: ADC
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-08-08 13:47:39,434 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: I2C
+2025-08-08 13:47:39,435 [INFO] CodeGenerator:882 - code generatio: config db path: C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeIDE_1.18.0\STM32CubeIDE\..\..\..\..\..\Users\jesfi\.eclipse\com.st.stm32cube.ide.mcu.rcp.product_1.18.0_2086139113_win32_win32_x86_64\plugins\com.st.stm32cube.common.mx_6.14.1.202504091515\\db\
+2025-08-08 13:47:39,450 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-08 13:47:39,450 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-08 13:47:39,554 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\license.tmp_save
+2025-08-08 13:47:39,758 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\license.tmp
+2025-08-08 13:47:39,829 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\gpio.tmp_save
+2025-08-08 13:47:39,941 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\gpio.tmp
+2025-08-08 13:47:40,733 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-08-08 13:47:40,744 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_inc.tmp_save
+2025-08-08 13:47:40,814 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_inc.tmp
+2025-08-08 13:47:40,822 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelInit.tmp_save
+2025-08-08 13:47:40,897 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelInit.tmp
+2025-08-08 13:47:40,903 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelStart.tmp_save
+2025-08-08 13:47:40,964 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelStart.tmp
+2025-08-08 13:47:40,972 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_typedefs.tmp_save
+2025-08-08 13:47:41,041 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_typedefs.tmp
+2025-08-08 13:47:41,048 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_vars.tmp_save
+2025-08-08 13:47:41,106 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_vars.tmp
+2025-08-08 13:47:41,111 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_pfp.tmp_save
+2025-08-08 13:47:41,165 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_pfp.tmp
+2025-08-08 13:47:41,172 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_obj_creat.tmp_save
+2025-08-08 13:47:41,239 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_obj_creat.tmp
+2025-08-08 13:47:41,245 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_default_thread.tmp_save
+2025-08-08 13:47:41,297 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_default_thread.tmp
+2025-08-08 13:47:41,303 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_threads.tmp_save
+2025-08-08 13:47:41,354 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_threads.tmp
+2025-08-08 13:47:41,389 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-08-08 13:47:41,400 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_inc.tmp_save
+2025-08-08 13:47:41,451 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_inc.tmp
+2025-08-08 13:47:41,457 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelInit.tmp_save
+2025-08-08 13:47:41,505 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelInit.tmp
+2025-08-08 13:47:41,512 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelStart.tmp_save
+2025-08-08 13:47:41,562 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelStart.tmp
+2025-08-08 13:47:41,569 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_typedefs.tmp_save
+2025-08-08 13:47:41,617 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_typedefs.tmp
+2025-08-08 13:47:41,624 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_vars.tmp_save
+2025-08-08 13:47:41,676 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_vars.tmp
+2025-08-08 13:47:41,682 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_pfp.tmp_save
+2025-08-08 13:47:41,733 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_pfp.tmp
+2025-08-08 13:47:41,741 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_obj_creat.tmp_save
+2025-08-08 13:47:41,792 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_obj_creat.tmp
+2025-08-08 13:47:41,800 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_default_thread.tmp_save
+2025-08-08 13:47:41,851 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_default_thread.tmp
+2025-08-08 13:47:41,858 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_threads.tmp_save
+2025-08-08 13:47:41,905 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_threads.tmp
+2025-08-08 13:47:41,912 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\FreeRTOSConfig.h_save
+2025-08-08 13:47:41,973 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\FreeRTOSConfig.h
+2025-08-08 13:47:41,981 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\freertos.c_save
+2025-08-08 13:47:42,034 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\freertos.c
+2025-08-08 13:47:42,057 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\stm32f4xx_it.c_save
+2025-08-08 13:47:42,210 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\stm32f4xx_it.c
+2025-08-08 13:47:42,218 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\stm32f4xx_it.h_save
+2025-08-08 13:47:42,293 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\stm32f4xx_it.h
+2025-08-08 13:47:42,312 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\stm32f4xx_hal_msp.c_save
+2025-08-08 13:47:42,410 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\stm32f4xx_hal_msp.c
+2025-08-08 13:47:42,415 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\system.tmp_save
+2025-08-08 13:47:42,462 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\system.tmp
+2025-08-08 13:47:42,475 [INFO] CodeEngine:319 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\stm32f4xx_hal_conf.h_save
+2025-08-08 13:47:42,529 [INFO] CodeEngine:343 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\stm32f4xx_hal_conf.h
+2025-08-08 13:47:42,551 [WARN] IPConfigManager:3790 - IP not found : TIM
+2025-08-08 13:47:42,553 [WARN] CodeGenerator:4198 - IP not found : null
+2025-08-08 13:47:42,561 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\main.h_save
+2025-08-08 13:47:42,625 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\main.h
+2025-08-08 13:47:42,634 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\main.c_save
+2025-08-08 13:47:42,773 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\main.c
+2025-08-08 13:47:43,335 [INFO] ProjectBuilder:3324 - Time for Copy HAL[1] : 409mS.
+2025-08-08 13:47:43,342 [INFO] ProjectBuilder:4912 - Project Generator version: 4.6.0.1-B1
+2025-08-08 13:47:43,407 [INFO] ConfigFileManager:1590 - The Die is : DIE431
+2025-08-08 13:47:44,670 [INFO] ProjectBuilder:5191 - Time for Generating toolchain IDE Files: 1328mS.
+2025-08-08 13:47:44,672 [INFO] ProjectBuilder:3181 - Time for Copy CMSIS : 1mS.
+2025-08-08 13:47:44,687 [INFO] ProjectBuilder:3181 - Time for Copy CMSIS : 0mS.
+2025-08-08 13:49:55,593 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-08 13:49:55,593 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-08 13:50:04,796 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-08 13:50:04,796 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-08 13:50:21,066 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-08 13:50:21,066 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-08 13:50:21,066 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-08 13:50:21,066 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-08 13:50:21,095 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-08-08 13:50:21,122 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-08 13:50:21,123 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-08 13:50:21,129 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-08 13:50:21,129 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-08 13:50:57,533 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 383678984 Bytes (565182464)
+2025-08-08 13:50:59,875 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 419856904 Bytes (565182464)
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RTC
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USART
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FREERTOS
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USART
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: ADC
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-08-08 13:51:01,443 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: I2C
+2025-08-08 13:51:01,444 [INFO] CodeGenerator:882 - code generatio: config db path: C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeIDE_1.18.0\STM32CubeIDE\..\..\..\..\..\Users\jesfi\.eclipse\com.st.stm32cube.ide.mcu.rcp.product_1.18.0_2086139113_win32_win32_x86_64\plugins\com.st.stm32cube.common.mx_6.14.1.202504091515\\db\
+2025-08-08 13:51:01,450 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-08 13:51:01,450 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-08 13:51:01,522 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\license.tmp_save
+2025-08-08 13:51:01,572 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\license.tmp
+2025-08-08 13:51:01,597 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\gpio.tmp_save
+2025-08-08 13:51:01,647 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\gpio.tmp
+2025-08-08 13:51:01,910 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-08-08 13:51:01,918 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_inc.tmp_save
+2025-08-08 13:51:01,964 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_inc.tmp
+2025-08-08 13:51:01,968 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelInit.tmp_save
+2025-08-08 13:51:02,015 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelInit.tmp
+2025-08-08 13:51:02,019 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelStart.tmp_save
+2025-08-08 13:51:02,065 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelStart.tmp
+2025-08-08 13:51:02,069 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_typedefs.tmp_save
+2025-08-08 13:51:02,113 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_typedefs.tmp
+2025-08-08 13:51:02,118 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_vars.tmp_save
+2025-08-08 13:51:02,164 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_vars.tmp
+2025-08-08 13:51:02,168 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_pfp.tmp_save
+2025-08-08 13:51:02,212 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_pfp.tmp
+2025-08-08 13:51:02,216 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_obj_creat.tmp_save
+2025-08-08 13:51:02,263 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_obj_creat.tmp
+2025-08-08 13:51:02,268 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_default_thread.tmp_save
+2025-08-08 13:51:02,312 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_default_thread.tmp
+2025-08-08 13:51:02,317 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_threads.tmp_save
+2025-08-08 13:51:02,361 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_threads.tmp
+2025-08-08 13:51:02,386 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-08-08 13:51:02,395 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_inc.tmp_save
+2025-08-08 13:51:02,442 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_inc.tmp
+2025-08-08 13:51:02,448 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelInit.tmp_save
+2025-08-08 13:51:02,495 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelInit.tmp
+2025-08-08 13:51:02,502 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelStart.tmp_save
+2025-08-08 13:51:02,548 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_kernelStart.tmp
+2025-08-08 13:51:02,554 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_typedefs.tmp_save
+2025-08-08 13:51:02,602 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_typedefs.tmp
+2025-08-08 13:51:02,609 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_vars.tmp_save
+2025-08-08 13:51:02,658 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_vars.tmp
+2025-08-08 13:51:02,665 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_pfp.tmp_save
+2025-08-08 13:51:02,712 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_pfp.tmp
+2025-08-08 13:51:02,718 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_obj_creat.tmp_save
+2025-08-08 13:51:02,776 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_obj_creat.tmp
+2025-08-08 13:51:02,786 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_default_thread.tmp_save
+2025-08-08 13:51:02,838 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_default_thread.tmp
+2025-08-08 13:51:02,845 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_threads.tmp_save
+2025-08-08 13:51:02,894 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\rtos_threads.tmp
+2025-08-08 13:51:02,902 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\FreeRTOSConfig.h_save
+2025-08-08 13:51:02,961 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\FreeRTOSConfig.h
+2025-08-08 13:51:02,967 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\freertos.c_save
+2025-08-08 13:51:03,023 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\freertos.c
+2025-08-08 13:51:03,054 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\stm32f4xx_it.c_save
+2025-08-08 13:51:03,152 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\stm32f4xx_it.c
+2025-08-08 13:51:03,159 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\stm32f4xx_it.h_save
+2025-08-08 13:51:03,210 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\stm32f4xx_it.h
+2025-08-08 13:51:03,227 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\stm32f4xx_hal_msp.c_save
+2025-08-08 13:51:03,304 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\stm32f4xx_hal_msp.c
+2025-08-08 13:51:03,309 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\system.tmp_save
+2025-08-08 13:51:03,355 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\MXTmpFiles\system.tmp
+2025-08-08 13:51:03,368 [INFO] CodeEngine:319 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\stm32f4xx_hal_conf.h_save
+2025-08-08 13:51:03,422 [INFO] CodeEngine:343 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\stm32f4xx_hal_conf.h
+2025-08-08 13:51:03,438 [WARN] IPConfigManager:3790 - IP not found : TIM
+2025-08-08 13:51:03,439 [WARN] CodeGenerator:4198 - IP not found : null
+2025-08-08 13:51:03,448 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\main.h_save
+2025-08-08 13:51:03,501 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Inc\main.h
+2025-08-08 13:51:03,507 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\main.c_save
+2025-08-08 13:51:03,622 [INFO] CodeEngine:287 - Generated code: C:\Users\jesfi\Desktop\STM-Projets\Projeto-ENGD33\Projeto-ENGD33\Core\Src\main.c
+2025-08-08 13:51:04,045 [INFO] ProjectBuilder:3324 - Time for Copy HAL[1] : 284mS.
+2025-08-08 13:51:04,050 [INFO] ProjectBuilder:4912 - Project Generator version: 4.6.0.1-B1
+2025-08-08 13:51:04,106 [INFO] ConfigFileManager:1590 - The Die is : DIE431
+2025-08-08 13:51:05,020 [INFO] ProjectBuilder:5191 - Time for Generating toolchain IDE Files: 970mS.
+2025-08-08 13:51:05,022 [INFO] ProjectBuilder:3181 - Time for Copy CMSIS : 1mS.
+2025-08-08 13:51:05,036 [INFO] ProjectBuilder:3181 - Time for Copy CMSIS : 0mS.
+2025-08-08 15:36:29,017 [INFO] WebApp:194 - Connection lost
+2025-08-08 15:36:29,251 [INFO] WebApp:191 - Connection restablished
+2025-08-08 15:36:35,495 [INFO] WebApp:194 - Connection lost
+2025-08-08 15:36:35,914 [INFO] WebApp:191 - Connection restablished
+2025-08-08 17:04:10,795 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-08 17:04:10,795 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-08 17:04:10,804 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-08 17:04:10,804 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.

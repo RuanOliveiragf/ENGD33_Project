@@ -1,0 +1,28 @@
+2025-08-07 09:05:03,694 [INFO] WebApp:194 - Connection lost
+2025-08-07 09:05:06,379 [INFO] WebApp:191 - Connection restablished
+2025-08-07 09:05:10,859 [INFO] WebApp:194 - Connection lost
+2025-08-07 09:05:11,035 [INFO] WebApp:191 - Connection restablished
+2025-08-07 09:05:16,982 [INFO] WebApp:194 - Connection lost
+2025-08-07 09:05:17,155 [INFO] WebApp:191 - Connection restablished
+2025-08-07 09:05:20,135 [INFO] WebApp:194 - Connection lost
+2025-08-07 09:05:20,331 [INFO] WebApp:191 - Connection restablished
+2025-08-07 09:05:27,778 [INFO] WebApp:194 - Connection lost
+2025-08-07 09:05:28,012 [INFO] WebApp:191 - Connection restablished
+2025-08-07 09:05:43,053 [INFO] WebApp:194 - Connection lost
+2025-08-07 09:05:43,213 [INFO] WebApp:191 - Connection restablished
+2025-08-07 09:05:46,475 [INFO] WebApp:194 - Connection lost
+2025-08-07 09:05:53,236 [INFO] WebApp:191 - Connection restablished
+2025-08-07 09:06:14,793 [INFO] WebApp:194 - Connection lost
+2025-08-07 09:06:15,128 [INFO] WebApp:191 - Connection restablished
+2025-08-07 10:30:21,641 [INFO] WebApp:194 - Connection lost
+2025-08-07 10:30:47,996 [INFO] WebApp:191 - Connection restablished
+2025-08-07 10:30:50,018 [INFO] WebApp:194 - Connection lost
+2025-08-07 10:30:50,409 [INFO] WebApp:191 - Connection restablished
+2025-08-07 10:37:24,692 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-07 10:37:24,693 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-07 10:37:24,694 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-07 10:37:24,695 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-07 10:37:25,192 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-07 10:37:25,192 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-08-07 10:37:25,193 [WARN] IP:2250 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-08-07 10:37:25,193 [WARN] IP:2250 - Analog_Filter not found: check if there is a RefParameter without a condition.
