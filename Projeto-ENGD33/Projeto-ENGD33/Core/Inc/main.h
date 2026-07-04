@@ -37,12 +37,6 @@ extern "C" {
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
 
-typedef struct Cartesian3D {
-    float x;
-    float y;
-    float z;
-};
-
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -65,8 +59,9 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define IMU_DRDY_GPIO_PC13_Pin GPIO_PIN_13
-#define IMU_DRDY_GPIO_PC13_GPIO_Port GPIOC
+#define IMU_DRDY_EXTI13_Pin GPIO_PIN_13
+#define IMU_DRDY_EXTI13_GPIO_Port GPIOC
+#define IMU_DRDY_EXTI13_EXTI_IRQn EXTI15_10_IRQn
 #define Osc_32k768Hz_In_Pin GPIO_PIN_14
 #define Osc_32k768Hz_In_GPIO_Port GPIOC
 #define Osc_32k768Hz_Out_Pin GPIO_PIN_15
@@ -93,8 +88,8 @@ void Error_Handler(void);
 #define ETH_SPI1_MOSI_GPIO_Port GPIOA
 #define Corrente_Motor3_ADC1_IN8_Pin GPIO_PIN_0
 #define Corrente_Motor3_ADC1_IN8_GPIO_Port GPIOB
-#define Monitor_Voltagem_Bateria_ADC1_IN9_Pin GPIO_PIN_1
-#define Monitor_Voltagem_Bateria_ADC1_IN9_GPIO_Port GPIOB
+#define Monitor_Voltagem_Bateria_Pin GPIO_PIN_1
+#define Monitor_Voltagem_Bateria_GPIO_Port GPIOB
 #define Relays_Motores_Pin GPIO_PIN_10
 #define Relays_Motores_GPIO_Port GPIOB
 #define NRF24_CE_Pin GPIO_PIN_12
@@ -103,8 +98,8 @@ void Error_Handler(void);
 #define PWM_Motor1_T1_CH1N_GPIO_Port GPIOB
 #define PWM_Motor2_T1_CH2N_Pin GPIO_PIN_14
 #define PWM_Motor2_T1_CH2N_GPIO_Port GPIOB
-#define PWM_Motor3_T1_CH3N_Pin GPIO_PIN_15
-#define PWM_Motor3_T1_CH3N_GPIO_Port GPIOB
+#define PWM_Motor3_T1_CH2N_Pin GPIO_PIN_15
+#define PWM_Motor3_T1_CH2N_GPIO_Port GPIOB
 #define PWM_Motor1_T1_CH1_Pin GPIO_PIN_8
 #define PWM_Motor1_T1_CH1_GPIO_Port GPIOA
 #define PWM_Motor2_T1_CH2_Pin GPIO_PIN_9

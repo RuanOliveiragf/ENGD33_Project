@@ -23,11 +23,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "GY-87.h"
-#include <math.h>
-
-// #include <stdbool.h>
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -61,8 +56,6 @@ TIM_HandleTypeDef htim5;
 
 UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart6;
-DMA_HandleTypeDef hdma_usart2_rx;
-DMA_HandleTypeDef hdma_usart2_tx;
 
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -78,7 +71,6 @@ const osThreadAttr_t defaultTask_attributes = {
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_DMA_Init(void);
 static void MX_RTC_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_I2C1_Init(void);
@@ -92,32 +84,6 @@ static void MX_USART6_UART_Init(void);
 void StartDefaultTask(void *argument);
 
 /* USER CODE BEGIN PFP */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim);
-// void Calibrate_ADC_Converter(void);
-void Start_Encoders(void);
-void Stop_Encoders(void);
-void Start_PWMs(void);
-void Stop_PWMs(void);
-void Reset_Relays_Motors(void);
-void Set_Relays_Motors(void);
-void Reset_NRF24_CE(void);
-void Set_NRF24_CE(void);
-void Configure_Compass(void);
-int  Get_Direction_Rotation_Wheel_1(void);
-int  Get_Direction_Rotation_Wheel_2(void);
-int  Get_Direction_Rotation_Wheel_3(void);
-float Read_Speed_Wheel_1(void);
-float Read_Speed_Wheel_2(void);
-float Read_Speed_Wheel_3(void);
-float Read_Current_Motor_1(void);
-float Read_Current_Motor_2(void);
-float Read_Current_Motor_3(void);
-void Write_Control_Signal_Motor_1(float Value);
-void Write_Control_Signal_Motor_2(float Value);
-void Write_Control_Signal_Motor_3(float Value);
-float Read_Voltage_Battery(void);
-float Read_Temperature_uP(void);
 
 /* USER CODE END PFP */
 
@@ -155,7 +121,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_RTC_Init();
   MX_ADC1_Init();
   MX_I2C1_Init();
@@ -310,29 +275,29 @@ static void MX_ADC1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN ADC1_Init 2 */
-  /*sConfig.Channel = ADC_CHANNEL_5;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+  sConfig.Channel = ADC_CHANNEL_5;
+    sConfig.Rank = 1;
+    sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
+    if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+    {
+      Error_Handler();
+    }
 
-  sConfig.Channel = ADC_CHANNEL_8;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+    sConfig.Channel = ADC_CHANNEL_8;
+      sConfig.Rank = 1;
+      sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
+      if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+      {
+        Error_Handler();
+      }
 
-  sConfig.Channel = ADC_CHANNEL_9;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }*/
+      sConfig.Channel = ADC_CHANNEL_9;
+        sConfig.Rank = 1;
+        sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
+        if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+        {
+          Error_Handler();
+        }
 
   /* USER CODE END ADC1_Init 2 */
 
@@ -354,7 +319,7 @@ static void MX_I2C1_Init(void)
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
-  hi2c1.Init.ClockSpeed = 400000;
+  hi2c1.Init.ClockSpeed = 100000;
   hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
@@ -494,9 +459,9 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 7;
+  htim1.Init.Prescaler = 0;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 499;
+  htim1.Init.Period = 65535;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -541,7 +506,7 @@ static void MX_TIM1_Init(void)
   sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
   sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
   sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
-  sBreakDeadTimeConfig.DeadTime = 80;
+  sBreakDeadTimeConfig.DeadTime = 0;
   sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
   sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
   sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
@@ -580,7 +545,7 @@ static void MX_TIM3_Init(void)
   htim3.Init.Period = 65535;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
@@ -629,7 +594,7 @@ static void MX_TIM4_Init(void)
   htim4.Init.Period = 65535;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
@@ -675,10 +640,10 @@ static void MX_TIM5_Init(void)
   htim5.Instance = TIM5;
   htim5.Init.Prescaler = 0;
   htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim5.Init.Period = 65535;
+  htim5.Init.Period = 4294967295;
   htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim5.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
@@ -719,7 +684,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 500000;
+  huart2.Init.BaudRate = 115200;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
@@ -770,25 +735,6 @@ static void MX_USART6_UART_Init(void)
 }
 
 /**
-  * Enable DMA controller clock
-  */
-static void MX_DMA_Init(void)
-{
-
-  /* DMA controller clock enable */
-  __HAL_RCC_DMA1_CLK_ENABLE();
-
-  /* DMA interrupt init */
-  /* DMA1_Stream5_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
-  /* DMA1_Stream6_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 5, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
-
-}
-
-/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -797,207 +743,6 @@ static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* USER CODE BEGIN MX_GPIO_Init_1 */
-
-  /*Configure GPIO pin : Corrente_Motor1_ADC1_IN4_Pin */
-  GPIO_InitStruct.Pin = Corrente_Motor1_ADC1_IN4_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-  HAL_GPIO_Init(Corrente_Motor1_ADC1_IN4_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : Corrente_Motor2_ADC1_IN5_Pin */
-  GPIO_InitStruct.Pin = Corrente_Motor2_ADC1_IN5_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-  HAL_GPIO_Init(Corrente_Motor2_ADC1_IN5_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : Corrente_Motor3_ADC1_IN8_Pin */
-  GPIO_InitStruct.Pin = Corrente_Motor3_ADC1_IN8_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-  HAL_GPIO_Init(Corrente_Motor3_ADC1_IN8_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pin : Monitor_Voltagem_Bateria_ADC1_IN9_Pin */
-   GPIO_InitStruct.Pin = Monitor_Voltagem_Bateria_ADC1_IN9_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-   HAL_GPIO_Init(Monitor_Voltagem_Bateria_ADC1_IN9_GPIO_Port, &GPIO_InitStruct);
-
-
-   /*Configure GPIO pins : Encoder_A_Motor1_T5_CH1_Pin */
-   GPIO_InitStruct.Pin = Encoder_A_Motor1_T5_CH1_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF2_TIM5;
-   HAL_GPIO_Init(Encoder_A_Motor1_T5_CH1_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : Encoder_B_Motor1_T5_CH2_Pin  */
-   GPIO_InitStruct.Pin = Encoder_B_Motor1_T5_CH2_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF2_TIM5;
-   HAL_GPIO_Init(Encoder_B_Motor1_T5_CH2_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : Encoder_A_Motor2_T3_CH1_Pin */
-   GPIO_InitStruct.Pin = Encoder_A_Motor2_T3_CH1_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
-   HAL_GPIO_Init(Encoder_A_Motor2_T3_CH1_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : Encoder_B_Motor2_T3_CH2_Pin  */
-   GPIO_InitStruct.Pin = Encoder_B_Motor2_T3_CH2_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
-   HAL_GPIO_Init(Encoder_B_Motor2_T3_CH2_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : Encoder_A_Motor3_T4_CH1_Pin */
-   GPIO_InitStruct.Pin = Encoder_A_Motor3_T4_CH1_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
-   HAL_GPIO_Init(Encoder_A_Motor3_T4_CH1_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : Encoder_B_Motor3_T4_CH2_Pin  */
-   GPIO_InitStruct.Pin = Encoder_B_Motor3_T4_CH2_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
-   HAL_GPIO_Init(Encoder_B_Motor3_T4_CH2_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : PWM_Motor1_T1_CH1N_Pin  */
-   GPIO_InitStruct.Pin = PWM_Motor1_T1_CH1N_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
-   HAL_GPIO_Init(PWM_Motor1_T1_CH1N_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : PWM_Motor2_T1_CH2N_Pin   */
-   GPIO_InitStruct.Pin = PWM_Motor2_T1_CH2N_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
-   HAL_GPIO_Init(PWM_Motor2_T1_CH2N_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : PWM_Motor3_T1_CH2N_Pin   */
-   GPIO_InitStruct.Pin = PWM_Motor3_T1_CH2N_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
-   HAL_GPIO_Init(PWM_Motor3_T1_CH2N_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : PWM_Motor1_T1_CH1_Pin  */
-   GPIO_InitStruct.Pin = PWM_Motor1_T1_CH1_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
-   HAL_GPIO_Init(PWM_Motor1_T1_CH1_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : PWM_Motor2_T1_CH2_Pin   */
-   GPIO_InitStruct.Pin = PWM_Motor2_T1_CH2_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
-   HAL_GPIO_Init(PWM_Motor2_T1_CH2_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : PWM_Motor3_T1_CH3_Pin   */
-   GPIO_InitStruct.Pin = PWM_Motor3_T1_CH3_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
-   HAL_GPIO_Init(PWM_Motor3_T1_CH3_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : IMU_I2C1_SCL_Pin   */
-   GPIO_InitStruct.Pin = IMU_I2C1_SCL_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
-   HAL_GPIO_Init(IMU_I2C1_SCL_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : IMU_I2C1_SDA_Pin   */
-   GPIO_InitStruct.Pin = IMU_I2C1_SDA_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
-   HAL_GPIO_Init(IMU_I2C1_SDA_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : ETH_SPI1_NSS_Pinn   */
-   GPIO_InitStruct.Pin = ETH_SPI1_NSS_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
-   GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
-   HAL_GPIO_Init(ETH_SPI1_NSS_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : ETH_SPI1_SCK_Pin   */
-   GPIO_InitStruct.Pin = ETH_SPI1_SCK_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
-   GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
-   HAL_GPIO_Init(ETH_SPI1_SCK_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : ETH_SPI1_MISO_Pin   */
-   GPIO_InitStruct.Pin = ETH_SPI1_MISO_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
-   GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
-   HAL_GPIO_Init(ETH_SPI1_MISO_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : ETH_SPI1_MOSI_Pin   */
-   GPIO_InitStruct.Pin = ETH_SPI1_MOSI_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
-   GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
-   HAL_GPIO_Init(ETH_SPI1_MOSI_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : IHM_UART6_TX_Pin   */
-   GPIO_InitStruct.Pin = IHM_UART6_TX_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF8_USART6;
-   HAL_GPIO_Init(IHM_UART6_TX_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : IHM_UART6_RX_Pin   */
-   GPIO_InitStruct.Pin = IHM_UART6_RX_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF8_USART6;
-   HAL_GPIO_Init(IHM_UART6_RX_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : GPS_UART2_TX_Pin   */
-   GPIO_InitStruct.Pin = GPS_UART2_TX_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
-   HAL_GPIO_Init(GPS_UART2_TX_GPIO_Port, &GPIO_InitStruct);
-
-   /*Configure GPIO pins : GPS_UART2_RX_Pin   */
-   GPIO_InitStruct.Pin = GPS_UART2_RX_Pin;
-   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-   /*GPIO_InitStruct.Pull = GPIO_NOPULL;*/
-   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-   GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
-   HAL_GPIO_Init(GPS_UART2_RX_GPIO_Port, &GPIO_InitStruct);
-
-
-
-
 
   /* USER CODE END MX_GPIO_Init_1 */
 
@@ -1010,330 +755,36 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, Relays_Motores_Pin|NRF24_CE_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : IMU_DRDY_GPIO_PC13_Pin */
-  GPIO_InitStruct.Pin = IMU_DRDY_GPIO_PC13_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  /*Configure GPIO pin : IMU_DRDY_EXTI13_Pin */
+  GPIO_InitStruct.Pin = IMU_DRDY_EXTI13_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(IMU_DRDY_GPIO_PC13_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(IMU_DRDY_EXTI13_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Relays_Motores_Pin NRF24_CE_Pin */
-  GPIO_InitStruct.Pin = Relays_Motores_Pin|NRF24_CE_Pin;
+  /*Configure GPIO pin : Relays_Motores_Pin */
+  GPIO_InitStruct.Pin = Relays_Motores_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  HAL_GPIO_Init(Relays_Motores_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : NRF24_CE_Pin */
+  GPIO_InitStruct.Pin = NRF24_CE_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  HAL_GPIO_Init(NRF24_CE_GPIO_Port, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
-
-
-
 
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
-
-// External Interrupt ISR Handler CallBackFun
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-    if(GPIO_Pin == IMU_DRDY_EXTI13_Pin) // INT Source is pin IMU_DRDY_EXTI13_Pin
-    {
-    // HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_11); // Toggle LED
-    }
-}
-
-void Start_Encoders(void)
-{
-	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
-	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
-	HAL_TIM_Encoder_Start(&htim5, TIM_CHANNEL_ALL);
-	__HAL_TIM_SET_COUNTER(htim3,0);
-	__HAL_TIM_SET_COUNTER(htim4,0);
-	__HAL_TIM_SET_COUNTER(htim5,0);
-}
-
-void Stop_Encoders(void)
-{
-	HAL_TIM_Encoder_Stop(&htim3, TIM_CHANNEL_ALL);
-	HAL_TIM_Encoder_Stop(&htim4, TIM_CHANNEL_ALL);
-	HAL_TIM_Encoder_Stop(&htim5, TIM_CHANNEL_ALL);
-}
-
-void Start_PWMs(void)
-{
-	HAL_TIM_PWM_Init(&htim1);
-	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 250);
-	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 250);
-	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 250);
-}
-
-void Stop_PWMs(void)
-{
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 250);
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 250);
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 250);
-	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
-	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
-	HAL_TIM_PWM_DeInit(&htim1);
-}
-
-void Reset_Relays_Motors(void)
-{
-	HAL_GPIO_WritePin(GPIOB, Relays_Motores_Pin, GPIO_PIN_RESET);
-}
-
-void Set_Relays_Motors(void)
-{
-	HAL_GPIO_WritePin(GPIOB, Relays_Motores_Pin, GPIO_PIN_SET);
-}
-
-void Reset_NRF24_CE(void)
-{
-	HAL_GPIO_WritePin(GPIOB, NRF24_CE_Pin, GPIO_PIN_RESET);
-}
-
-void Set_NRF24_CE(void)
-{
-	HAL_GPIO_WritePin(GPIOB, NRF24_CE_Pin, GPIO_PIN_SET);
-}
-
-int  Get_Direction_Rotation_Wheel_1(void)
-{
-	int direction = 0;
-	direction = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim5);
-	return direction;
-}
-
-float Read_Speed_Wheel_1(void)
-{
-	int new_value_counter = 0;
-	float speed_rotational = 0;
-
-	// valor_contador = TIM3->CNT;
-	new_value_counter = __HAL_TIM_GET_COUNTER(htim5);
-	__HAL_TIM_SET_COUNTER(htim5,0);
-	speed_rotational = ((float)new_value_counter)/36.0f;  //1440 pilsos por ciclos com 25 milisegundos de amostragem
-	return speed_rotational;
-}
-
-float Read_Speed_Wheel_2(void)
-{
-	int new_value_counter = 0;
-	float speed_rotational = 0;
-
-	// valor_contador = TIM3->CNT;
-	new_value_counter = __HAL_TIM_GET_COUNTER(htim3);
-	__HAL_TIM_SET_COUNTER(htim3,0);
-	speed_rotational = ((float)new_value_counter)/36.0f;  //1440 pilsos por ciclos com 25 milisegundos de amostragem
-	return speed_rotational;
-}
-
-float Read_Speed_Wheel_3(void)
-{
-	int new_value_counter = 0;
-	float speed_rotational = 0;
-
-	// valor_contador = TIM3->CNT;
-	new_value_counter = __HAL_TIM_GET_COUNTER(htim4);
-	__HAL_TIM_SET_COUNTER(htim4,0);
-	speed_rotational = ((float)new_value_counter)/36.0f;  //1440 pilsos por ciclos com 25 milisegundos de amostragem
-	return speed_rotational;
-}
-
-float Read_Current_Motor_1(void)
-{
-	float corrente;
-	uint16_t Value;
-	ADC_ChannelConfTypeDef sConfig;
-
-	sConfig.Channel = ADC_CHANNEL_4;
-	sConfig.Rank = 1;
-	sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-	{
-	   Error_Handler();
-	}
-	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1, 1);
-	Value = HAL_ADC_GetValue(&hadc1);
-	HAL_ADC_Stop(&hadc1);
-	corrente =   ((((float) Value)/1024.0f) - 0.5) * 30;
-	return corrente;
-}
-
-float Read_Current_Motor_2(void)
-{
-	float corrente;
-	uint16_t Value;
-	ADC_ChannelConfTypeDef sConfig;
-
-	sConfig.Channel = ADC_CHANNEL_5;
-	sConfig.Rank = 1;
-	sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-	{
-	   Error_Handler();
-	}
-	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1, 1);
-	Value = HAL_ADC_GetValue(&hadc1);
-	HAL_ADC_Stop(&hadc1);
-	corrente =   ((((float) Value)/1024.0f) - 0.5) * 30;
-	return corrente;
-}
-
-float Read_Current_Motor_3(void)
-{
-	float corrente;
-	uint16_t Value;
-	ADC_ChannelConfTypeDef sConfig;
-
-	sConfig.Channel = ADC_CHANNEL_8;
-	sConfig.Rank = 1;
-	sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-	{
-	   Error_Handler();
-	}
-	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1, 1);
-	Value = HAL_ADC_GetValue(&hadc1);
-	HAL_ADC_Stop(&hadc1);
-	corrente =   ((((float) Value)/1024.0f) - 0.5) * 30;
-	return corrente;
-}
-
-
-
-void Write_Control_Signal_Motor_1(float Value)
-{
-	float input = Value;
-	float aux = 0;
-	uint16_t pw = 0;
-
-	if ((input >= (-1.0f)) && (input <= 1.0f))
-	{
-		aux = ((Value*240.0f) + 250.0f);
-		pw = ((uint16_t) aux);
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, pw);
-	}else
-	{
-		if (input > 1.0f)
-		{
-			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 490);
-		}
-		else
-		{
-			if (input < (-1.0f))
-			{
-				__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 10);
-			}
-		}
-	}
-}
-
-void Write_Control_Signal_Motor_2(float Value)
-{
-	float input = Value;
-	float aux = 0;
-	uint16_t pw = 0;
-
-	if ((input >= (-1.0f)) && (input <= 1.0f))
-	{
-		aux = ((Value*240.0f) + 250.0f);
-		pw = ((uint16_t) aux);
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, pw);
-	}else
-	{
-		if (input > 1.0f)
-		{
-			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 490);
-		}
-		else
-		{
-			if (input < (-1.0f))
-			{
-				__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 10);
-			}
-		}
-	}
-}
-
-void Write_Control_Signal_Motor_3(float Value)
-{
-	float input = Value;
-	float aux = 0;
-	uint16_t pw = 0;
-
-	if ((input >= (-1.0f)) && (input <= 1.0f))
-	{
-		aux = ((Value*240.0f) + 250.0f);
-		pw = ((uint16_t) aux);
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, pw);
-	}else
-	{
-		if (input > 1.0f)
-		{
-			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 490);
-		}
-		else
-		{
-			if (input < (-1.0f))
-			{
-				__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 10);
-			}
-		}
-	}
-}
-
-float Read_Voltage_Battery(void)
-{
-	float voltagem;
-	uint16_t Value;;
-	ADC_ChannelConfTypeDef sConfig;
-
-	sConfig.Channel = ADC_CHANNEL_9;
-	sConfig.Rank = 1;
-	sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-	{
-	   Error_Handler();
-	}
-	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1, 1);
-	Value = HAL_ADC_GetValue(&hadc1);
-	HAL_ADC_Stop(&hadc1);
-	voltagem =   (((float) Value)/1024.0f) * 15.0f;
-	return voltagem;
-}
-
-float Read_Temperature_uP(void)
-{
-	uint16_t Value;
-	float voltagem_sensor, temperatura;
-	ADC_ChannelConfTypeDef sConfig;
-
-	sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
-	sConfig.Rank = 1;
-	sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-	{
-	   Error_Handler();
-	}
-	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1, 1);
-	Value = HAL_ADC_GetValue(&hadc1);
-	HAL_ADC_Stop(&hadc1);
-	voltagem_sensor =  ((((float) Value)*3.3)/1024.0f);
-	// 0.76 é a tensão do sensor a 26 graus C e 0.0025 é o coeficiente de temperatura
-	// temperatura = ((V_sensor - V_25) / T_coef) + 25
-	temperatura = ((voltagem_sensor - 0.76)/0.0025) + 25.0f;
-	return temperatura;
-}
 
 /* USER CODE END 4 */
 
