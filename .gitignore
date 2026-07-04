@@ -1,0 +1,15 @@
+# Pastas de Build
+Debug/
+Release/
+build/
+
+# Configurações de Workspace e IDE local
+.metadata/
+.settings/
+
+# Arquivos de sistema operacional (Windows/Mac)
+.DS_Store
+Thumbs.db
+
+# Ignorar backups de arquivos gerados pelo CubeMX
+*.bak
