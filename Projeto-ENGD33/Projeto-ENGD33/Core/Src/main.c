@@ -29,6 +29,10 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
+#include "fatfs.h"
+#include <string.h>
+#include <stdio.h>
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -67,6 +71,10 @@ const osThreadAttr_t defaultTask_attributes = {
 };
 /* USER CODE BEGIN PV */
 
+FATFS fs;      // Objeto do sistema de arquivos (File System)
+FIL fil;       // Objeto do arquivo (File)
+FRESULT fres;  // Variável para checar erros nas funções do FatFs
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -85,6 +93,8 @@ static void MX_USART6_UART_Init(void);
 void StartDefaultTask(void *argument);
 
 /* USER CODE BEGIN PFP */
+
+void EscreverNoMicroSDTask(void *argument);
 
 /* USER CODE END PFP */
 
@@ -787,6 +797,40 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void EscreverNoMicroSDTask(void *argument)
+{
+    char buffer[100];
+    UINT bytesWrote;
+
+    // 1. Monta o sistema de arquivos (1 = forca a montagem imediata)
+    fres = f_mount(&fs, "", 1);
+    
+    if (fres != FR_OK) {
+        // Tratar erro (ex: Cartao nao inserido)
+        // Podemos colocar um osDelay infinito aqui se falhar no mount
+    }
+
+    for(;;)
+    {
+        // 2. Criacao do Mock (Exemplo de log com Timestamp, Local, Temperatura e um Numero Aleatorio)
+        sprintf(buffer, "2026-07-04 16:56:50, Salvador, 25.5, 1024\n");
+
+        // 3. Abre o arquivo em modo Append (anexa ao fim) e cria se nao existir
+        fres = f_open(&fil, "log.csv", FA_WRITE | FA_OPEN_APPEND | FA_CREATE_ALWAYS);
+
+        if (fres == FR_OK) {
+            // 4. Escreve os dados
+            f_write(&fil, buffer, strlen(buffer), &bytesWrote);
+            
+            // 5. Fecha o arquivo para garantir que os dados sejam salvos no SD fisico
+            f_close(&fil);
+        }
+
+        // Aguarda 1 segundo (podemos remover isso depois)
+        osDelay(1000); 
+    }
+}
 
 /* USER CODE END 4 */
 
