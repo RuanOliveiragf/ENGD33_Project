@@ -2,6 +2,7 @@
 #include "fatfs.h"
 #include "task.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 // Variável externa do RTC declarada no main.c
 extern RTC_HandleTypeDef hrtc;
@@ -17,6 +18,7 @@ static Sensores_t Mock_LerSensores(void);
 
 // Implementação da Inicialização
 void Datalogger_Init(void) {
+	srand(HAL_GetTick());
     // 1. Cria a fila (suporta até 10 pacotes na fila de espera)
     Fila_Datalogger = xQueueCreate(10, sizeof(PacoteLog_t));
 
@@ -55,9 +57,17 @@ static TempoRTC_t Hardware_LerRTC(void) {
 
 static Sensores_t Mock_LerSensores(void) {
     Sensores_t s;
-    s.acelerador = 75.0f;
-    s.corrente_motor = 15.5f;
-    s.velocidade = 2100.0f;
+
+    // 1. Acelerador: Varia de 0.0% a 100.0%
+    // (float)rand() / RAND_MAX gera um número entre 0.0 e 1.0
+    s.acelerador = ((float)rand() / RAND_MAX) * 100.0f;
+
+    // 2. Corrente do Motor: Varia de 5.0A a 25.0A (Amplitude de 20.0A)
+    s.corrente_motor = 5.0f + (((float)rand() / RAND_MAX) * 20.0f);
+
+    // 3. Velocidade (RPM): Varia de 1000.0 RPM a 3000.0 RPM (Amplitude de 2000.0 RPM)
+    s.velocidade = 1000.0f + (((float)rand() / RAND_MAX) * 2000.0f);
+
     return s;
 }
 
