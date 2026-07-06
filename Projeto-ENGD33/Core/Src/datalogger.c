@@ -1,6 +1,7 @@
 #include "datalogger.h"
 #include "fatfs.h"
 #include "task.h"
+#include "GY-87.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,11 +15,11 @@ QueueHandle_t Fila_Datalogger = NULL;
 static void Task_Controle(void *argument);
 static void Task_SDCard(void *argument);
 static TempoRTC_t Hardware_LerRTC(void);
-static Sensores_t Mock_LerSensores(void);
+static Sensores_t LerSensores_Reais(void);
 
 // Implementação da Inicialização
 void Datalogger_Init(void) {
-	srand(HAL_GetTick());
+	Configure_Compass();
     // 1. Cria a fila (suporta até 10 pacotes na fila de espera)
     Fila_Datalogger = xQueueCreate(10, sizeof(PacoteLog_t));
 
@@ -55,6 +56,21 @@ static TempoRTC_t Hardware_LerRTC(void) {
     return tempo_real;
 }
 
+static Sensores_t LerSensores_Reais(void) {
+    Sensores_t s;
+
+    // CORREÇÃO: Mudado para o nome real da função do seu arquivo (Accelerometer)
+    Cartesian3D dados_aceleracao = Read_Accelerometer();
+
+    s.accel_x = dados_aceleracao.x;
+    s.accel_y = dados_aceleracao.y;
+    s.accel_z = dados_aceleracao.z;
+    s.temperatura = 25.0f; // Ou use a função real se houver
+
+    return s;
+}
+
+/*
 static Sensores_t Mock_LerSensores(void) {
     Sensores_t s;
 
@@ -70,6 +86,8 @@ static Sensores_t Mock_LerSensores(void) {
 
     return s;
 }
+*/
+
 
 // ======================================================
 // TAREFAS DO FREERTOS
@@ -79,9 +97,11 @@ static void Task_Controle(void *argument) {
     float sinal_pwm = 0.0f;
 
     for(;;) {
-        log_atual.dados_planta = Mock_LerSensores();
+        // CORREÇÃO: Chama a função real em vez do Mock!
+        log_atual.dados_planta = LerSensores_Reais();
 
-        sinal_pwm = log_atual.dados_planta.acelerador * 1.5f;
+        // Cálculo do seu PWM (ajuste conforme necessário)
+        sinal_pwm = log_atual.dados_planta.accel_x * 1.5f;
         if(sinal_pwm > 100.0f) sinal_pwm = 100.0f;
 
         log_atual.comando_pwm = sinal_pwm;
@@ -120,17 +140,14 @@ static void Task_SDCard(void *argument) {
             char buffer_texto[128];
 
             int len = snprintf(buffer_texto, sizeof(buffer_texto),
-                                   "[%02d/%02d/%04d - %02d:%02d:%02d] Accel X: %.2f | Curr: %.2f | Speed: %.2f | PWM: %.2f\r\n",
-                                   pacote_receber.carimbo_tempo.dia,
-                                   pacote_receber.carimbo_tempo.mes,
-                                   pacote_receber.carimbo_tempo.ano,
-                                   pacote_receber.carimbo_tempo.horas,
-                                   pacote_receber.carimbo_tempo.minutos,
-                                   pacote_receber.carimbo_tempo.segundos,
-                                   pacote_receber.dados_planta.acelerador,
-                                   pacote_receber.dados_planta.corrente_motor,
-                                   pacote_receber.dados_planta.velocidade,
-                                   pacote_receber.comando_pwm);
+                               "[%02d:%02d:%02d] Accel X: %.2f | Y: %.2f | Z: %.2f | PWM: %.2f\r\n",
+                               pacote_receber.carimbo_tempo.horas,
+                               pacote_receber.carimbo_tempo.minutos,
+                               pacote_receber.carimbo_tempo.segundos,
+                               pacote_receber.dados_planta.accel_x,  // Mudou aqui
+                               pacote_receber.dados_planta.accel_y,  // Mudou aqui
+                               pacote_receber.dados_planta.accel_z,  // Mudou aqui
+                               pacote_receber.comando_pwm);
 
             res = f_write(&file, buffer_texto, len, &bytesWritten);
 

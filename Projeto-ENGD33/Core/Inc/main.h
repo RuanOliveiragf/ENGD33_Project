@@ -46,12 +46,11 @@ typedef struct {
     uint8_t mes;
     uint16_t ano;
 } TempoRTC_t;
-
-// Estrutura dos Sensores (Mock)
 typedef struct {
-    float acelerador;
-    float corrente_motor;
-    float velocidade;
+    float accel_x;
+    float accel_y;
+    float accel_z;
+    float temperatura;
 } Sensores_t;
 
 // Pacote de Telemetria que vai para o SD via SPI
