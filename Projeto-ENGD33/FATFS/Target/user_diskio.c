@@ -86,7 +86,6 @@ DSTATUS USER_initialize (
     for (int i = 0; i < 10; i++) {
         SPI_RxTx(0xFF);
     }
-
     Stat &= ~STA_NOINIT; // CORREÇÃO: Remove o estado de "Não Inicializado" (Sucesso!)
     return Stat;
   /* USER CODE END INIT */

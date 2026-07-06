@@ -42,6 +42,9 @@ typedef struct {
     uint8_t horas;
     uint8_t minutos;
     uint8_t segundos;
+    uint8_t dia;
+    uint8_t mes;
+    uint16_t ano;
 } TempoRTC_t;
 
 // Estrutura dos Sensores (Mock)

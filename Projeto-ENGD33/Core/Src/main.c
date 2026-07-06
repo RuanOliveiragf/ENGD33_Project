@@ -20,6 +20,7 @@
 #include "main.h"
 #include "cmsis_os.h"
 #include "fatfs.h"
+#include "datalogger.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -76,8 +77,6 @@ const osThreadAttr_t defaultTask_attributes = {
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* USER CODE BEGIN PV */
-// Fila de comunicação entre a malha de controle e o barramento SPI
-QueueHandle_t Fila_Datalogger = NULL;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -181,14 +180,7 @@ int main(void)
   MX_USART6_UART_Init();
   MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
-  // 1. Cria a fila (suporta até 10 pacotes na fila de espera)
-  Fila_Datalogger = xQueueCreate(10, sizeof(PacoteLog_t));
-
-  // 2. Cria a Task de Controle (Prioridade Alta: 3)
-  xTaskCreate(Task_Controle, "Controle", 256, NULL, 3, NULL);
-
-  // 3. Cria a Task do SD Card (Prioridade Baixa: 1)
-  xTaskCreate(Task_SDCard, "SDCard_SPI", 1024, NULL, 1, NULL);
+  Datalogger_Init();
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -332,29 +324,6 @@ static void MX_ADC1_Init(void)
   }
   /* USER CODE BEGIN ADC1_Init 2 */
 
-  /*sConfig.Channel = ADC_CHANNEL_5;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  sConfig.Channel = ADC_CHANNEL_8;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  sConfig.Channel = ADC_CHANNEL_9;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }*/
   /* USER CODE END ADC1_Init 2 */
 
 }
@@ -1367,127 +1336,6 @@ float Read_Temperature_uP(void)
 	return temperatura;
 }
 
-// =======================================================
-// 1. INTERFACES DE HARDWARE E MOCK
-// =======================================================
-
-// Leitura REAL do RTC da Placa
-TempoRTC_t Hardware_LerRTC(void) {
-    TempoRTC_t tempo_real;
-    RTC_TimeTypeDef sTime = {0};
-    RTC_DateTypeDef sDate = {0};
-
-    HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-    HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN); // Destrava o relógio
-
-    tempo_real.horas = sTime.Hours;
-    tempo_real.minutos = sTime.Minutes;
-    tempo_real.segundos = sTime.Seconds;
-
-    return tempo_real;
-}
-
-// Leitura da Planta (ÚNICO MOCK)
-Sensores_t Mock_LerSensores(void) {
-    Sensores_t s;
-    s.acelerador = 75.0f;
-    s.corrente_motor = 15.5f;
-    s.velocidade = 2100.0f;
-    return s;
-}
-
-// ======================================================
-// 2. TAREFAS DO FREERTOS (Arquitetura)
-// =======================================================
-
-void Task_Controle(void *argument) {
-    PacoteLog_t log_atual;
-    float sinal_pwm = 0.0f;
-
-    for(;;) {
-        // A. Lê Sensores (Mock)
-        log_atual.dados_planta = Mock_LerSensores();
-
-        // B. Controle e Saturação
-        sinal_pwm = log_atual.dados_planta.acelerador * 1.5f;
-        if(sinal_pwm > 100.0f) sinal_pwm = 100.0f;
-
-        // C. Monta o pacote com o relógio (Hardware Real)
-        log_atual.comando_pwm = sinal_pwm;
-        log_atual.carimbo_tempo = Hardware_LerRTC();
-
-        // D. Envia para o Datalogger
-        if (Fila_Datalogger != NULL) {
-            xQueueSend(Fila_Datalogger, &log_atual, 0);
-        }
-
-        // Aguarda 50ms (20Hz)
-        vTaskDelay(pdMS_TO_TICKS(50));
-    }
-}
-
-void Task_SDCard(void *argument)
-{
-  /* USER CODE BEGIN Task_SDCard */
-  FATFS fs;
-  FIL file;
-  FRESULT res;
-  UINT bytesWritten;
-  PacoteLog_t pacote_receber;
-
-  // Garante que o pino CS começa em nível alto (SD Desativado)
-  HAL_GPIO_WritePin(ETH_SPI1_NSS_GPIO_Port, ETH_SPI1_NSS_Pin, GPIO_PIN_SET);
-  osDelay(100);
-
-  // 1. Monta o cartão SD associando-o à string de caminho padrão ("0:/")
-  res = f_mount(&fs, "0:/", 1);
-  if (res != FR_OK) {
-    // Erro crítico ao ler o cartão! Se cair aqui, o erro está na fiação ou no user_diskio.c
-    for(;;) osDelay(1000);
-  }
-
-  // 2. Abre o arquivo datalog.txt no modo Append (Escreve sempre no final, se não existir, cria)
-  res = f_open(&file, "0:/datalog.txt", FA_OPEN_APPEND | FA_WRITE);
-  if (res != FR_OK) {
-    // Erro ao criar ou abrir o arquivo de texto
-    for(;;) osDelay(1000);
-  }
-
-  /* Loop infinito - Escrita orientada a eventos por Fila */
-  for(;;)
-  {
-    // A tarefa fica dormindo aqui (0% de CPU) até que cheguem novos dados da planta na fila
-    if (xQueueReceive(Fila_Datalogger, &pacote_receber, portMAX_DELAY) == pdPASS)
-    {
-      char buffer_texto[128];
-
-      // Converte a struct recebida em uma string limpa de texto
-      int len = snprintf(buffer_texto, sizeof(buffer_texto),
-                         "[%02d:%02d:%02d] Accel X: %.2f | Curr: %.2f | Speed: %.2f | PWM: %.2f\r\n",
-                         pacote_receber.carimbo_tempo.horas,
-                         pacote_receber.carimbo_tempo.minutos,
-                         pacote_receber.carimbo_tempo.segundos,
-                         pacote_receber.dados_planta.acelerador,
-                         pacote_receber.dados_planta.corrente_motor,
-                         pacote_receber.dados_planta.velocidade,
-                         pacote_receber.comando_pwm);
-
-      // Escreve a linha formatada dentro da memória cache do arquivo
-      res = f_write(&file, buffer_texto, len, &bytesWritten);
-
-      // Segurança: Força o esvaziamento do cache de dados diretamente no disco físico.
-      // Se a energia do robô/planta falhar, você não perde os dados salvos anteriormente.
-      if (res == FR_OK) {
-        f_sync(&file);
-      }
-    }
-  }
-
-  // Fecho preventivo (Código inacessível por causa do loop)
-  f_close(&file);
-  f_mount(NULL, "0:/", 0);
-  /* USER CODE END Task_SDCard */
-}
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
