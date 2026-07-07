@@ -6,7 +6,14 @@
 #include "FreeRTOS.h"
 #include "queue.h"
 
-// Fila global para que a Task de Controle possa enviar dados
+// Níveis de severidade usados no log de eventos (system.log)
+typedef enum {
+    LOG_INFO,
+    LOG_WARN,
+    LOG_ERROR
+} NivelLog_t;
+
+// Fila global para que a Task de Controle possa enviar dados de telemetria
 extern QueueHandle_t Fila_Datalogger;
 
 // Função única que o main.c vai chamar para ligar o Datalogger
