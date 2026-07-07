@@ -180,7 +180,48 @@ int main(void)
   MX_USART6_UART_Init();
   MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
-  Datalogger_Init();
+  /* * VERIFICAÇÃO DE BACKUP:
+     * Lemos o Registrador de Dados de Backup 1 (BKP_DR1).
+     * Se o valor lido for DIFERENTE da nossa assinatura mágica (0x1234),
+     * significa que é a PRIMEIRA VEZ que a placa liga ou a bateria foi removida.
+     */
+    if (HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1) != 0x1234)
+    {
+        // 1. Cria as estruturas da HAL para Hora e Data
+        RTC_TimeTypeDef sTime = {0};
+        RTC_DateTypeDef sDate = {0};
+
+        // 2. Define o Horário inicial
+        sTime.Hours = 14;
+        sTime.Minutes = 30;
+        sTime.Seconds = 0;
+        sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+        sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+
+        // Envia a hora para o chip do RTC
+        if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK) {
+            Error_Handler();
+        }
+
+        // 3. Define a Data inicial (Terça-feira, 07 de Julho de 2026)
+        sDate.WeekDay = RTC_WEEKDAY_TUESDAY;
+        sDate.Month = RTC_MONTH_JULY;
+        sDate.Date = 7;
+        sDate.Year = 26;
+
+        // Envia a data para o chip do RTC
+        if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK) {
+            Error_Handler();
+        }
+
+        /* * MARCAÇÃO DE SUCESSO:
+         * Escrevemos a assinatura 0x1234 no registrador de backup.
+         * Da próxima vez que o robô for ligado, o 'if' lá de cima vai dar FALSO
+         * e o relógio não será resetado!
+         */
+        HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, 0x1234);
+    }
+    Datalogger_Init();
   /* USER CODE END 2 */
 
   /* Init scheduler */
