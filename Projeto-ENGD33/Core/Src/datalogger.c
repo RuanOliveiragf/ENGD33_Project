@@ -196,8 +196,9 @@ static void Task_SDCard(void *argument) {
 
     // Se o arquivo acabou de ser criado (vazio), grava o cabecalho das colunas
     if (f_size(&arquivo_csv) == 0) {
-        const char *cabecalho = "timestamp,acelerador,corrente_motor,velocidade,pwm\r\n";
-        if (f_write(&arquivo_csv, cabecalho, strlen(cabecalho), &bytesWritten) == FR_OK) {
+        //const char *cabecalho = "timestamp,acelerador,corrente_motor,velocidade,pwm\r\n"; este cabecalho funcionava para memoria mockada
+    	const char *cabecalho = "timestamp,acel_x,acel_y,acel_z,giro_x,giro_y,giro_z,bussola,pwm\r\n";
+    	if (f_write(&arquivo_csv, cabecalho, strlen(cabecalho), &bytesWritten) == FR_OK) {
             f_sync(&arquivo_csv);
         }
     }
