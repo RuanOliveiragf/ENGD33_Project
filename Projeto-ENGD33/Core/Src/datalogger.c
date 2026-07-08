@@ -210,7 +210,10 @@ static void Task_SDCard(void *argument) {
             char linha_csv[128];
 
             int len = snprintf(linha_csv, sizeof(linha_csv),
-                                "%04d-%02d-%02d %02d:%02d:%02d,%.2f,%.2f,%.2f,%.2f\r\n",
+								"%04d-%02d-%02d %02d:%02d:%02d,"
+								"%.3f,%.3f,%.3f,"
+								"%.2f,%.2f,%.2f,"
+								"%.1f,%.2f\r\n",
                                 pacote_receber.carimbo_tempo.ano,
                                 pacote_receber.carimbo_tempo.mes,
                                 pacote_receber.carimbo_tempo.dia,
