@@ -147,7 +147,7 @@ static void Task_Controle(void *argument) {
     float sinal_pwm = 0.0f;
 
     for(;;) {
-        log_atual.dados_planta  = Hardware_LerSensores();   // ← era Mock_LerSensores
+        log_atual.dados_planta  = Hardware_LerSensores();   //troquei, antes era o mock
         log_atual.carimbo_tempo = Hardware_LerRTC();
 
         float mag = sqrtf(log_atual.dados_planta.acel_x * log_atual.dados_planta.acel_x +
