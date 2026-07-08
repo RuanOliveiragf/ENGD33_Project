@@ -1,10 +1,14 @@
 #include "datalogger.h"
 #include "fatfs.h"
 #include "task.h"
+#include "GY-87.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
+#include <math.h>
+
+#define COMPASS_BIAS  0.0f
 
 // Variável externa do RTC declarada no main.c
 extern RTC_HandleTypeDef hrtc;
@@ -16,13 +20,17 @@ QueueHandle_t Fila_Datalogger = NULL;
 static void Task_Controle(void *argument);
 static void Task_SDCard(void *argument);
 static TempoRTC_t Hardware_LerRTC(void);
-static Sensores_t Mock_LerSensores(void);
+//static Sensores_t Mock_LerSensores(void);
+static Sensores_t Hardware_LerSensores(void);
 static const char *Log_NomeNivel(NivelLog_t nivel);
 static void Log_Escrever(FIL *arquivo, NivelLog_t nivel, const char *tarefa, const char *tag, const char *formato, ...);
 
 // Implementação da Inicialização
 void Datalogger_Init(void) {
-	srand(HAL_GetTick());
+	//srand(HAL_GetTick());
+    //cnfigura os sensores físicos antes de criar as tasks
+    Configure_Giroscope_and_Accelerometer();//inclui HAL_Delay(100) interno
+    Configure_Compass();
     // 1. Cria a fila (suporta até 10 pacotes na fila de espera)
     Fila_Datalogger = xQueueCreate(10, sizeof(PacoteLog_t));
 
@@ -59,6 +67,8 @@ static TempoRTC_t Hardware_LerRTC(void) {
     return tempo_real;
 }
 
+/*
+
 static Sensores_t Mock_LerSensores(void) {
     Sensores_t s;
 
@@ -71,6 +81,25 @@ static Sensores_t Mock_LerSensores(void) {
 
     // 3. Velocidade (RPM): Varia de 1000.0 RPM a 3000.0 RPM (Amplitude de 2000.0 RPM)
     s.velocidade = 1000.0f + (((float)rand() / RAND_MAX) * 2000.0f);
+
+    return s;
+}
+*/
+
+static Sensores_t Hardware_LerSensores(void) {
+    Sensores_t s;
+
+    Cartesian3D acel = Read_Accelerometer();
+    Cartesian3D giro = Read_Giroscope();
+    float bussola = Read_Compass(COMPASS_BIAS);
+
+    s.acel_x = acel.x;
+    s.acel_y = acel.y;
+    s.acel_z = acel.z;
+    s.giro_x = giro.x;
+    s.giro_y = giro.y;
+    s.giro_z = giro.z;
+    s.bussola = bussola;
 
     return s;
 }
@@ -118,13 +147,15 @@ static void Task_Controle(void *argument) {
     float sinal_pwm = 0.0f;
 
     for(;;) {
-        log_atual.dados_planta = Mock_LerSensores();
+        log_atual.dados_planta  = Hardware_LerSensores();   // ← era Mock_LerSensores
+        log_atual.carimbo_tempo = Hardware_LerRTC();
 
-        sinal_pwm = log_atual.dados_planta.acelerador * 1.5f;
-        if(sinal_pwm > 100.0f) sinal_pwm = 100.0f;
+        float mag = sqrtf(log_atual.dados_planta.acel_x * log_atual.dados_planta.acel_x +
+                          log_atual.dados_planta.acel_y * log_atual.dados_planta.acel_y);
+        sinal_pwm = (mag / 9.81f) * 100.0f;
+        if (sinal_pwm > 100.0f) sinal_pwm = 100.0f;
 
         log_atual.comando_pwm = sinal_pwm;
-        log_atual.carimbo_tempo = Hardware_LerRTC();
 
         if (Fila_Datalogger != NULL) {
             xQueueSend(Fila_Datalogger, &log_atual, 0);
@@ -185,9 +216,13 @@ static void Task_SDCard(void *argument) {
                                 pacote_receber.carimbo_tempo.horas,
                                 pacote_receber.carimbo_tempo.minutos,
                                 pacote_receber.carimbo_tempo.segundos,
-                                pacote_receber.dados_planta.acelerador,
-                                pacote_receber.dados_planta.corrente_motor,
-                                pacote_receber.dados_planta.velocidade,
+	                            pacote_receber.dados_planta.acel_x,
+	                            pacote_receber.dados_planta.acel_y,
+	                            pacote_receber.dados_planta.acel_z,
+	                            pacote_receber.dados_planta.giro_x,
+	                            pacote_receber.dados_planta.giro_y,
+	                            pacote_receber.dados_planta.giro_z,
+	                            pacote_receber.dados_planta.bussola,
                                 pacote_receber.comando_pwm);
 
             res = f_write(&arquivo_csv, linha_csv, len, &bytesWritten);
