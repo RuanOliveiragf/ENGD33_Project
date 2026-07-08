@@ -47,6 +47,16 @@ typedef struct {
     uint16_t ano;
 } TempoRTC_t;
 
+typedef struct {
+    float acel_x;
+    float acel_y;
+    float acel_z;
+    float giro_x;
+    float giro_y;
+    float giro_z;
+    float bussola;
+} Sensores_t;
+
 // Pacote de Telemetria que vai para o SD via SPI
 typedef struct {
     TempoRTC_t carimbo_tempo;
