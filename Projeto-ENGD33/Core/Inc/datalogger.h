@@ -15,15 +15,7 @@ typedef enum {
 
 
 //movi o struct pra ca apenas pra ficar mais organizado ja que usamos no datalogger.c
-typedef struct {
-    float acel_x;
-    float acel_y;
-    float acel_z;
-    float giro_x;
-    float giro_y;
-    float giro_z;
-    float bussola;
-} Sensores_t;
+
 
 // Fila global para que a Task de Controle possa enviar dados de telemetria
 extern QueueHandle_t Fila_Datalogger;
